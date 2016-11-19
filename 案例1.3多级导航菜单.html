@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>案例1.3多级导航菜单</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration:none;
+        }
+        #menu {
+            height:30px;
+        }
+        #menu .main-menu{
+            float: left;
+            width: 120px;
+            height: 30px;
+            margin-right: 5px;
+        }
+        #menu .main-menu a{
+            height: 30px;
+            width: 120px;
+            display:block;
+            line-height: 30px;
+            text-align: center;
+            background: #cccccc;
+            color: cadetblue;
+
+
+        }
+        #menu .main-menu .sub-menu{
+            display: none;
+        }
+      #menu.sub-menu a{
+          background: #eeeeee;
+          border-bottom: 1px dashed#333;//虚线
+        }
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li class="main-menu">
+        <a href="#">link 1</a>
+        <ul class="sub-menu">
+            <li><a href="#">submenu1</a></li>
+            <li><a href="#">submenu2</a></li>
+            <li><a href="#">submenu3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <a href="#">link 2</a>
+        <ul class="sub-menu">
+            <li><a href="#">submenu1</a></li>
+            <li><a href="#">submenu2</a></li>
+            <li><a href="#">submenu3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <a href="#">link 3</a>
+        <ul class="sub-menu">
+            <li><a href="#">submenu1</a></li>
+            <li><a href="#">submenu2</a></li>
+            <li><a href="#">submenu3</a></li>
+        </ul>
+    </li>
+
+</ul>
+
+
+<script>
+    var oMenu = document.getElementById("menu");
+    var aLi=oMenu.getElementsByTagName("li");//nodelist
+    for(var i=0; i<aLi.length; i++){
+        if(aLi[i].className == "main-menu"){
+            aLi[i].onmouseover = function(){
+                var oSubMenu = this.getElementsByTagName("ul")[0];
+                console.log(oSubMenu);
+                oSubMenu.style.display = "block";
+            };
+            aLi[i].onmouseout = function(){
+                var oSubMenu = this.getElementsByTagName("ul")[0];
+                oSubMenu.style.display = "none";
+            };
+
+
+        }
+
+
+    }
+
+
+</script>
+
+</body>
+</html>
+<!--
+子代选择器 #menu > li
+当权重值相同时后面定义的会把前面定义的覆盖掉
+hover加后鼠标移动到地方会变色 但是IE6只支持a
+display：none block inline inline-block
+
+js弱类型的语言
+number string boolean null undefined undefined是指你定义一个变量但是没有给变量赋值
+定义变量用 var
+定义个函数 function fn（）
+             {
+                alert（）
+                     }
+ 调用函数  fn（）；
+ 例如要计算x+y
+ function add(X,Y){
+            alert（x+y）；
+
+   }
+  add（3,4）
+
+输出;console. log（）
+js选择器：
+1、var menu = document.getElementById（“menu”）；
+2、var ali = oMenu.getElementBytName（“li”）；
+3、var ali2 = document.getElementByClassName("main-menu");//不支持IE6/7/8
+
+事件：
+1.事件源
+2、事件处理函数
+3、事件
+
+
+
+-->

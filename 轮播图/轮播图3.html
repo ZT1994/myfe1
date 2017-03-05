@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播图3</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width: 680px;
+            height: 344px;
+            margin:100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        #content{
+            width:2720px;
+            position: absolute;/*父元素定位*/
+            left: 0;/*left的初始默认值为auto*/
+        }
+        #content img{
+           float: left;/*浮动*/
+        }
+        /*#content img.selected{*/
+            /*display:block;*/
+        /*}*/
+        #tab{
+            position: absolute;
+            right: 10px;
+            bottom:10px;
+        }
+        #tab li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            color:#fff;
+            cursor: pointer;
+            margin-right: 5px;
+            line-height: 20px;
+            text-align: center;
+        }
+        #tab li.selected{
+            background: orange;
+        }
+        #arrow{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+        }
+        #arrow span{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: #000;
+            color:#fff;
+            text-align: center;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="content">
+        <img class="selected" src="img/1.jpg">
+        <img  src="img/2.jpg">
+        <img  src="img/3.jpg">
+        <img  src="img/4.jpg">
+    </div>
+    <ul id="tab">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="arrow">
+        <span id="prev">&lt;</span>  <!--行级元素 将行级分成一块一块 lt-<,gt->-->
+        <span id="next">&gt;</span>
+    </div>
+    <script src = "../jslib.js"></script>
+</div>
+<script>
+    var oContainer = document.getElementById('container');
+    var oContent = document.getElementById('content');
+    var aLi = oContainer.getElementsByTagName('li');
+    var aImg = oContainer.getElementsByTagName('img');
+    var oNext =document.getElementById('next');
+    var oPrev =document.getElementById('prev');
+    var iNow = 0;//存储当前显示的索引
+    for(var i=0;i<aLi.length;i++) {
+        aLi[i].index = i;
+        aLi[i].onmouseover = function () {
+            changeImg(this.index);
+            iNow = this.index;
+        };
+    }
+    for(var i=0;i<aImg.length;i++) {
+        aImg[i].index =i;
+    }
+
+    oNext.onclick = function () {
+        iNow++;
+        if (iNow == aLi.length) {
+            iNow = 0;
+
+        }
+        changeImg(iNow);
+    };
+    oPrev.onclick = function () {
+        iNow--;
+        if (iNow == -1) {
+            iNow = aLi.length - 1;
+        }
+        changeImg(iNow);
+    };
+//    var zIndex = 4;
+
+    function changeImg(a) {
+        for (var j = 0; j < aLi.length; j++) {
+            aLi[j].className = '';
+//            aImg[j].className = '';
+        }
+        aLi[a].className = 'selected';
+//        aImg[a].className = 'selected';
+//      oContent.style.left = -a*aImg[0].offsetWidth+'px';
+       animate(oContent, {
+          left:-aImg[0].offsetWidth*a});
+    }//加上animate由滑动的动画效果
+
+    var timer;
+    timer = setInterval(function (){ //间隔1秒动一次
+        oNext.onclick();
+    }, 2000);
+
+    oContainer.onmouseover = function(){
+        clearInterval(timer);
+    };
+    oContainer.onmouseout = function(){
+        timer = setInterval(function (){
+            oNext.onclick();
+        }, 2000);
+    }; //1.浮动 2.父元素定位 3.div使用anmiate类动画效果
+</script>
+</body>
+</html>

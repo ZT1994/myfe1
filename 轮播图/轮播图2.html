@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播图2（渐变）</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            width: 680px;
+            height: 344px;
+            margin:100px auto;
+            position: relative;
+        }
+       #content img{
+           display:block;/*图片都显示*/
+           position: absolute;
+        }
+        #content img.selected{
+            display:block;
+
+        }
+        #tab{
+            position: absolute;
+            right: 10px;
+            bottom:10px;
+            z-Index: 4;
+        }
+        #tab li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            color:#fff;
+            cursor: pointer;
+            margin-right: 5px;
+            line-height: 20px;
+            text-align: center;
+        }
+        #tab li.selected{
+            background: orange;
+        }
+        #arrow{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            z-Index: 4;
+        }
+        #arrow span{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: #000;
+            color:#fff;
+            text-align: center;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="content">
+        <img class="selected" src="img/1.jpg">
+        <img  src="img/2.jpg">
+        <img  src="img/3.jpg">
+        <img  src="img/4.jpg">
+    </div>
+    <ul id="tab">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="arrow">
+        <span id="prev">&lt;</span>  <!--行级元素 将行级分成一块一块 lt-<,gt->-->
+        <span id="next">&gt;</span>
+    </div>
+    <script src = "../jslib.js"></script>
+</div>
+<script>
+    var oContainer = document.getElementById('container');
+    var aLi = oContainer.getElementsByTagName('li');
+    var aImg = oContainer.getElementsByTagName('img');
+    var oArrow = document.getElementById('arrow');
+    var oTab = document.getElementById('tab');
+    var oNext =document.getElementById('next');
+    var oPrev =document.getElementById('prev');
+    var iNow = 0;//存储当前显示的索引
+    for(var i=0;i<aLi.length;i++) {
+        aLi[i].index = i;
+        aLi[i].onmouseover = function () {
+            changeImg(this.index);
+            iNow = this.index;
+        };
+    }
+        for (var i = 0; i < aImg.length; i++) {
+            aImg[i].style.zIndex = aImg.length - i;//保证最前面的div的z-index最大，也就是在最上面
+        }
+
+
+        oNext.onclick = function () {
+            iNow++;
+            if (iNow == aLi.length) {
+                iNow = 0;
+
+            }
+            changeImg(iNow);
+        };
+        oPrev.onclick = function () {
+            iNow--;
+            if (iNow == -1) {
+                iNow = aLi.length - 1;
+            }
+            changeImg(iNow);
+        };
+        var zIndex = 4;
+
+        function changeImg(a) {
+            for (var j = 0; j < aLi.length; j++) {
+                aLi[j].className = '';
+            }
+            aLi[a].className = 'selected';
+            var oImg = aImg[a];
+            oImg.style.opacity = 0;
+            oImg.style.zIndex = ++zIndex;
+            oArrow.style.zIndex = zIndex;
+            oTab.style.zIndex = zIndex;
+            animate(oImg, {opacity: 100});
+
+        }
+
+        var timer;
+        timer = setInterval(function (){ //间隔1秒动一次
+            oNext.onclick();
+        }, 1000);
+
+    oContainer.onmouseover = function(){
+        clearInterval(timer);
+    };
+    oContainer.onmouseout = function(){
+        timer = setInterval(function (){
+            oNext.onclick();
+        }, 1000);
+    }
+</script>
+</body>
+</html>

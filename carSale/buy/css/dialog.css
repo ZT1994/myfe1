@@ -1,0 +1,38 @@
+.dialog-mask{
+    background: #000000;
+    /*background:rgba(0,0,0,0.5);*/
+    opacity:0.5;
+    filter: alpha(opacity= 50);
+    position: absolute;
+    left:0;
+    right: 0;
+    top: 85px;
+    bottom: 0;
+}
+.dialog-box{
+    width: 50px;
+    height: 60px;
+    background: #ffffff;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-left: -200px;
+    margin-top: -150px;
+}
+.dialog-title-box{
+    background: green;
+    color:lavenderblush;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+.dialog-title{
+    float:left;
+ }
+.dialog-close{
+    float:right;
+}
+.dialog-box-content{
+    /*margin: 0 auto;*/
+    display: none;
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>二手车交易</title>
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/dialog.css"/>
+    <script src="js/require.js" data-main="js/index"></script>
+    <!--<script src="js/cityselect.js"></script>-->
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <a class="logo" href="#logo">
+            <img src="images/logo.jpg" alt=""/>
+        </a>
+        <div class="city">
+            <span>城市选择</span>
+            <select name="" id=""></select>
+        </div>
+        <div class="search">
+            <input  class="search-input"  type="text" placeholder="搜索您想要的车"/>
+            <button class="btn-search"  href="#">搜索</button>
+        </div>
+        <div class="user">
+            <a  id="login" href="#login">登录</a>
+            <a  id="register"  href="#register">注册</a>
+            <div class="dialog-box-content">
+                用户名：<input type="text"/>
+                密  码：<input type="text"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="header-select">
+    <div class="wrapper">
+        <ul id="select-btn1">
+            <li><a href="index.html" class="selected">首页</a></li>
+            <li><a href="../buy/buy.html">我要买车</a></li>
+            <li><a href="../sale/sale.html">我要卖车</a></li>
+        </ul>
+        <ul id="select-btn2">
+            <li><a href="">二手车服务咨询</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+<div id="nav">
+<div class="wrapper">
+    <div class="select_area">
+        <div class="buy-tit">我要买车</div>
+        <div class="border">
+            <a href="#">品牌</a>
+            <ul class="item">
+                <a href=""><li>大众</li></a>
+                <a href=""><li>现代</li></a>
+                <a href=""><li>丰田</li></a>
+                <a href=""><li>日产</li></a>
+                <a href=""><li>福特</li></a>
+                <a href=""><li>奇瑞</li></a>
+                <a href=""><li>哈弗</li></a>
+                <a href=""><li>奥迪</li></a>
+                <a href=""><li>本田</li></a>
+            </ul>
+        </div>
+        <div class="border">
+            <a href="#">价格</a>
+            <ul class="item">
+                <li>5万元以下</li>
+                <li>5万-10万</li>
+                <li>10万-20万</li>
+                <li>20万以上</li>
+            </ul>
+        </div>
+        <div class="border">
+            <a href="#">车型</a>
+            <ul class="item">
+                <li>SUV</li>
+                <li>商务</li>
+                <li>准车型</li>
+                <li>急售</li>
+            </ul>
+        </div>
+        <div class="buy-tit">我要卖车</div>
+    </div>
+</div>
+
+    <div id="content"></div>
+
+    <div id="purpose">
+        <!--<div class="lc">-->
+        <ul>
+            <li>
+                <div class="circle radius">
+                    <i class="lc-01"></i>
+                </div>
+                <div class="txt">
+                    <h4>一年/两万公里质保</h4>
+                </div>
+            </li>
+            <li>
+                <div class="circle radius">
+                    <i class="lc-02"></i>
+                </div>
+                <div class="txt">
+                    <h4>全面检测</h4>
+                </div>
+            </li>
+            <li>
+                <div class="circle radius">
+                    <i class="lc-03"></i>
+                </div>
+                <div class="txt">
+                    <h4>14天可退</h4>
+                </div>
+            </li>
+            <li>
+                <div class="circle radius">
+                    <i class="lc-04"></i>
+                </div>
+                <div class="txt">
+                    <h4>100%个人车源</h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--</div>-->
+</div>
+</div>
+<div class="special">
+    <div class="wrapper">
+    <div class="block-description">
+        <span class="title"> 特色 </span>
+    </div>
+    <div class="active-banner fl">
+        <a href="#">
+            <h2>
+                <font color="#f79630">259项</font>
+                "全面检测"
+            </h2>
+            <P>严苛检测标准，无事故</P>
+            <img src="images/sun_banner.jpg" alt=""/>
+        </a>
+    </div>
+    <div class="active-blocks fr">
+        <ul>
+            <li class="li_01">
+                <a href="#" title="实用代步车" target="_blank">
+                    <p class="title">实用代步车</p>
+                    <p class="li_content">驾驭想象 聆听声音</p>
+                    <div class="pic">
+                        <img src="images/car1.jpg" alt="保值车型"/>
+                    </div>
+                </a>
+            </li>
+            <li class="li_02">
+                <a href="#" title="5-8万能买啥" target="_blank">
+                    <p class="title">5-8万能买啥</p>
+                    <p class="li_content">驾有所值 动气强劲</p>
+                    <div class="pic">
+                        <img src="images/car2.jpg" alt="5-8万能买啥"/>
+                    </div>
+                </a>
+            </li>
+            <li class="li_03">
+                <a href="#" title="12-16万能买啥" target="_blank">
+                    <p class="title">12-16万能买啥</p>
+                    <p class="li_content">风范 与自由同行</p>
+                    <div class="pic">
+                        <img src="images/car3.jpg" alt="2-16万能买啥"/>
+                    </div>
+                </a>
+            </li>
+            <li class="li_04">
+                <a href="#" title="奥迪车库" target="_blank">
+                    <p class="title">奥迪车库</p>
+                    <p class="li_content">奥迪——</p>
+                    <div class="pic">
+                        <img src="images/logo-3.jpg" alt="奥迪车库"/>
+                    </div>
+                </a>
+            </li>
+            <li class="li_05">
+                <a href="#" title="大众车库" target="_blank">
+                    <p class="title">大众车库</p>
+                    <p class="li_content">大众——</p>
+                    <div class="pic">
+                        <img src="images/logo-4.jpg" alt="大众车库"/>
+                    </div>
+                </a>
+            </li>
+            <li class="li_06">
+                <a href="#" title="岂止于大" target="_blank">
+                    <p class="title">岂止于大</p>
+                    <p class="li_content">钟爱车型</p>
+                    <div class="pic">
+                        <img src="images/car4.jpg" alt="岂止于大"/>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="wrapper">
+        Copyright © 2016-2017, snncar.com,All Rights Reserved 皖ICP备16022456号-1
+    </div>
+</div>
+</body>
+</html>

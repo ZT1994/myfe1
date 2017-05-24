@@ -1,0 +1,150 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+body{
+    font-family:  Microsoft YaHei,tahoma,arial,Hiragino Sans GB,\\5b8b\4f53,sans-serif;
+}
+/*标题栏*/
+
+.wrapper{
+    width: 1003px;
+    /*background: #ff00ff;*/
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+.header{
+    height: 120px;
+    /*background: #00ff00;*/
+}
+.logo{
+    margin-top: 37px;
+    float: left;
+    display: block;
+}
+
+#nav{
+    float:left;
+    margin: 53px 0 0 130px;
+
+}
+
+#nav li{
+    float: left;
+    padding: 0 25px;
+    border-right: 1px solid #6b6b6b;
+    font-size: 15px;
+    color: #777777;
+    cursor: pointer;
+
+}
+
+#nav li.selected{
+    color: #33beff;
+}
+
+#nav li:last-child{
+    border-right: none;
+}
+
+.search{
+    width: 130px;
+    height: 30px;
+    background: #f1f3f6;
+    float: right;
+    margin-top: 45px;
+
+}
+.search input{
+    width: 100px;
+    height: 30px;
+    background: #f1f3f6;
+    border: none;
+    text-indent: 11px;/*向右缩进*/
+    outline: none; /*把点击后的蓝色边框去掉*/
+}
+
+#btn-search{
+    width: 30px;
+    height: 30px;
+    display: block;
+    background: url(../images/sprite.png) 8px 9px no-repeat;/*8是左右 9是上下*/
+    float: right;
+}
+/*尾部*/
+.foot{
+    height: 330px;
+}
+.brand{
+    height: 140px;
+   /* text-align: center;*/
+}
+.brand p{
+    margin-top: 29px;
+    font-size: 20px;
+    color:#6f6f6f;
+}
+#brand-picture{
+    display: block;
+    height: 60px;
+    text-align: center;
+}
+#brand-picture li{
+    display: block;
+    float: left;
+    margin: 23px 56px 0 0 ;
+
+    /*line-height: 60px;*/
+}
+#brand-picture li:last-child{
+    margin-right: 0;
+}
+.L-sel{
+    width: 29px;
+    height: 50px;
+    /*color: #ced4db;*/
+    background: url(../images/sprite.png) -44px -169px no-repeat;
+}
+.R-sel{
+    width: 29px;
+    height: 50px;
+    background: url(../images/sprite.png) -87px -169px no-repeat;
+}
+
+/*#brand-picture  li.img{*/
+    /*vertical-align: middle;*/
+/*}*/
+.middle-p{
+    /*text-align: center;*/
+    /*line-height: 60px;*/
+    margin-top: 10px;
+}
+.foot-box{
+    height: 176px;
+    /*margin-top: 154px;*/
+    background: #31333e;
+}
+#list{
+    display: block;
+    width:502px;
+    height: 90px;
+    margin-top: 45px;
+    float: left;
+    background: url(../images/sprite.png) -119px -639px no-repeat;
+}
+
+
+#icons{
+    height: 60px;
+    width: 300px;
+    float: right;
+    margin-top: 45px;
+    background: url(../images/sprite.png) -676px -751px no-repeat;
+}

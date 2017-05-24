@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>案例1.1-水平导航菜单</title>
     <style>
+    /*样式重置*/
     *{
        margin:0;
        padding:0;
@@ -28,19 +29,36 @@
      width:100%;
      height:100%;
      background:#cccccc;
-     line-height:30px;
-     text-align:center;
+     line-height:30px;/*单行垂直居中，只对单行起作用*/
+     text-align:center;/*文本居中*/
     }
        
     </style>
-</head>
+    </head>
 <body>
-<ul id="menu">
-    <li><a href="#">link 1</a></li>
-    <li><a href="#">link 2</a></li>
-    <li><a href="#">link 3</a></li>
+    <ul id="menu">
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 2</a></li>
+        <li><a href="#">link 3</a></li>
 
-</ul>
+     </ul>
 
 </body>
 </html>
+
+
+<!--
+css选择器：
+1、标签|元素选择器 h1 div
+2、id选择器 #id 唯一
+3、class选择器  .class 可重复
+4、后代选择器：#menu a（有空格是后代选择器 若#menu li.menu就是li的class交menu）
+5、子代选择器 > IE6不支持
+
+权重值：id 100 class 10 tag 1
+w3c中宽度和高度是对内容来说的
+父子关系改变子元素的margin时父子都会变，所有要要在父元素里加overflow：hidden；
+兄弟元素时取margin时margin取得是两个的最大值
+目前为止就a是行级元素（inline）
+浮动时为了防止上一个浮动后释放了空间后下一个上去可以用clear：both清除浮动
+-->

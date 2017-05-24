@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            font:normal 12px/17px Arial;
+        }
+        div{
+            padding: 2px;
+        }
+        input textarea{
+            width: 12em;
+            border: 1px solid #000000;
+        }
+
+        .focus{
+            background: pink;
+            border: 1px solid red;
+        }
+
+
+
+
+    </style>
+    <script src="../../jquery-1.12.4.js"></script>
+    <script src="demo.js"></script>
+</head>
+<body>
+<form action="" method="post">
+    <fieldset>
+    <legend>个人信息表</legend>
+    <div>
+        <label for="username">名称</label>
+        <input id="username"   type="text" value="名称"/>
+    </div>
+    <div>
+        <label for="pwd">密码:</label>
+        <input id="pwd" type="password" value="密码"/>
+    </div>
+    <div>
+        <lable for="msg"> 详细内容：</lable>
+        <textarea id="msg" rows="2" cols="20">详细信息</textarea>
+    </div>
+        </fieldset>
+    </form>
+<!--<script>-->
+    <!--$(function(){-->
+        <!--$(":input").focus(function(){-->
+            <!--//$(this).addClass("focus").val(this.value==this.defaultValue?"":this.value);-->
+            <!--$(this).addClass("focus");-->
+            <!--if(/*this.value*/$(this).val() == this.defaultValue){-->
+                <!--//$(this).val("");-->
+                <!--this.value = "";-->
+            <!--}-->
+        <!--}).blur(function(){-->
+            <!--$(this).removeClass("focus").val(this.value==""?this.defaultValue:this.value);-->
+        <!--});-->
+    <!--})-->
+
+
+<!--</script>-->
+
+</body>
+</html>

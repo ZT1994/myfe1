@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="css/index.css"/>
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/dialog.css"/>
-    <script src="js/require.js" data-main="js/index"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/carousel.js"></script>
     <!--<script src="js/cityselect.js"></script>-->
 </head>
 <body>
@@ -16,13 +17,18 @@
             <img src="images/logo.jpg" alt=""/>
         </a>
         <div class="city">
-            <span>城市选择</span>
-            <select name="" id=""></select>
+            <select name="" id="s_city">
+                <option value="">北京</option>
+                <option value="">上海</option>
+                <option value="">哈尔滨</option>
+            </select>
         </div>
+
         <div class="search">
             <input  class="search-input"  type="text" placeholder="搜索您想要的车"/>
             <button class="btn-search"  href="#">搜索</button>
         </div>
+
         <div class="user">
             <a  id="login" href="#login">登录</a>
             <a  id="register"  href="#register">注册</a>
@@ -85,8 +91,20 @@
         <div class="buy-tit">我要卖车</div>
     </div>
 </div>
+  <div id="carousel">
+      <div class="content">
+          <img src="images/1.jpg" alt="" class="selected"/>
+           <img src="images/2.jpg" alt=""/>
+          <img src="images/3.jpg" alt=""/>
+           <img src="images/4.jpg" alt=""/>
+      </div>
+      <div id="span">
+          <span id="L-btn"></span>
+          <span id="R-btn"></span>
+      </div>
 
-    <div id="content"></div>
+  </div>
+
 
     <div id="purpose">
         <!--<div class="lc">-->

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+    //let
+//    console.log(a);
+//    var a=10;//输出的是undefined 因为变量提升 相当于var a； console.log（） 然后再赋值 1、但是let没有 2、用let不能重复声明变量
+    //3、用let只对块作用域有作用 4、let的临时失效区（只要同名的变量即使全局定义也报错说没有定义）5、每一个let都有一个作用域
+
+    //const 常量 不能重复声明 块作用域有效 也没有变量提升 与let特性一样
+//    const num ={name:"zs",age:"23"};//存的是地址，地址没变只是里面的东西变了，但是我们希望常量不变所以用Object.freeze(num)
+//    Object.freeze(num);//冻结
+//    num.age= 5;
+//    console.log(num);
+
+    //super可以指到父类的构造方法
+    //set不能存重复的值 是一种属性
+
+//    var arr=[1,2,3,4,5,1,4,3,2,6];
+//    var Array=[];
+//    for(var i=0; i<arr.length; i++){
+//           if(arr.indexOf(arr[i])== i){
+//               Array.push(arr[i]);
+//           }
+//
+//    } console.log(Array);
+//
+//    var name ='zs';
+//    var obj = {
+//        name,
+//        age:23
+//    };
+//    console.log(obj.name)
+
+    var a=10,b=20;
+    a=b+a;
+    b=a-b;
+    a=a-b;
+    console.log(a,b);
+
+
+
+</script>
+</body>
+</html>

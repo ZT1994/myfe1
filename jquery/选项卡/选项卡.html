@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        li{
+            float:left;
+            background-color:#aaa;
+            color:white;
+            padding:5px;
+            margin-right:2px;
+            border:1px solid white;
+        }
+        div{
+            clear: left;
+            width: 200px;
+            height: 100px;
+            background: #3c3c3c;
+            color: white;
+            /*margin-right: 10px;*/
+            padding: 10px;
+            text-align: center;
+            display: none;
+
+        }
+        #divOne{
+            display: block;
+        }
+
+        #liOne{
+            background: #777;
+            border: 1px solid #777;
+        }
+    </style>
+    <script src="../jquery-1.12.4.js"></script>
+    <script src="demo.js"></script>
+</head>
+<body>
+
+    <ul>
+        <li id="liOne">标签1</li>
+        <li>标签2</li>
+        <li>标签3</li>
+    </ul>
+
+<div id="divOne">我是内容1</div>
+<div>我是内容2</div>
+<div>我是内容3</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+           list-style: none;
+        }
+        #container{
+            width: 400px;
+            height: 200px;
+            border: 1px solid #000;/*外框是黑色*/
+            margin:50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #content{
+            width: 520px;
+            position: absolute;
+        }
+        #content li{
+            width: 120px;
+            height: 120px;
+            background: #000;
+            font-size: 32px;/*字体放大*/
+            text-align: center;
+            line-height: 120px;
+            color: #fff;
+            float: left;
+            margin-right: 10px;
+        }
+        #arrow{
+            position: absolute;
+            bottom: 20px;
+            overflow: hidden;
+            left: 50%;
+            margin-left: -105px;/*负数向左移*/
+        }
+        #arrow span{
+            width: 100px;
+            height: 40px;
+            background: #ccc;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 5px;
+
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="content">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="arrow">
+        <span id="lbtn">&lt;&lt;向左</span>
+        <span id="rbtn">&gt;&gt;向右</span>
+    </div>
+</div>
+<script>
+    var oContainer = document.getElementsByName('container');
+    var oContent = document.getElementById('content');
+    oContent.innerHTML =  oContent.innerHTML + oContent.innerHTML;//变成两对1234；
+    var oRBtn = document.getElementById('rbtn');
+    var oLBtn = document.getElementById('lbtn');
+    var aLi = oContent.getElementsByTagName('li');
+    oContent.style.width = aLi.length * (aLi[0].offsetWidth + 10)+'px';
+    var speed = -2;//速度
+       setInterval(function(){
+           //left值 到达oContent中间点， left值设置成0
+       if(oContent.offsetLeft <= -oContent.offsetWidth/2){
+           oContent.style.left = 0;
+        }
+          if (oContent.offsetLeft > 0){
+               oContent.style.left = -oContent.offsetWidth/2 + 'px';
+           }
+        oContent.style.left = oContent.offsetLeft + speed + 'px';
+    },10);
+
+       oRBtn.onmouseover = function(){
+        speed = 2;
+    };
+       oLBtn.onmouseover = function(){
+        speed = -2;
+    }
+
+
+</script>
+</body>
+</html>
+
+<!--
+appendChild() 剪切功能，在内部后面添加
+-->

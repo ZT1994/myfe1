@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #drag{
+            height: 200px;
+            width: 200px;
+            background: red;
+            position:relative;/*绝对定位相当于body定位*/
+        }
+
+    </style>
+</head>
+<body>
+<div id="drag">
+
+</div>
+<script>
+    var oDrag = document.getElementById('drag');
+    oDrag.onmousedown=function(e){
+        e = e || window.event;
+        var left = e.clientX - oDrag.offsetLeft;//offsetleft若有已定位的父元素对于父类的距离如果没有父类左边就对于浏览器的距离，相当于小红框左边对于浏览器边上的值
+        var top = e.clientY - oDrag.offsetTop ;
+
+        document.onmousemove=function(e){//用document对于整这个浏览器都可以移动
+            e = e || window.event;
+            var ileft = e.clientX - left;
+            var itop = e.clientY - top;
+
+            if(ileft<0){
+                ileft=0;
+            } else if(ileft > document.documentElement.clientWidth - oDrag.offsetWidth){
+               ileft = document.documentElement.clientWidth - oDrag.offsetWidth;
+           }
+            if(itop<0){
+                itop=0;
+            }else if(itop > document.documentElement.clientHeight- oDrag.offsetHeight){
+                itop = document.documentElement.clientHeight- oDrag.offsetHeight;
+            }
+
+            oDrag.style.left = ileft + 'px';//给left和top赋值，需要设置成带单位px的
+            oDrag.style.top = itop + 'px';
+
+        };
+       document.onmouseup = function(){
+            document.onmousemove = null;
+        }
+    }
+</script>
+</body>
+</html>
+
+

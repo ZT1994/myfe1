@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            text-decoration: none;
+        }
+        body{
+            background: #000000;
+            position: relative;
+        }
+        #container li{
+            float: left;
+            margin: 0 2px 2px 0;
+            /*width: 100%;*/
+            /*height: 100%;*/
+        }
+        #container li:nth-child(4n){
+            margin-right: 0;
+        }
+        #container li img{
+            display: block;
+        }
+        #bigImg{
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+        }
+
+    </style>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery.mobile-1.4.5.js"></script>
+</head>
+<body>
+<ul id="container">
+    <!--<li><img src="img/thumbs/1.jpg" alt=""/></li>-->
+</ul>
+<div id="bigImg"></div>
+<script>
+    $(function(){
+        var html ="";
+        var $container = $('#container');
+        var num=24;
+        var iMargin =2;
+        var iNow;
+        for(var i=0;i<num;i++){
+            html+='<li><img src="img/thumbs/'+(i+1)+'.jpg" alt=""/></li>';
+//            console.log('<li><img src="img/thumbs/'+(i+1)+'.jpg" alt=""/></li>');
+        }
+        $container.append(html);
+        $('img',$container).css({
+            width:($('body').width() - 3*iMargin)/4,
+            height: ($('body').width()- 3*iMargin)/4
+        }).on('tap',function(e){
+               $container.hide();
+               var index = $('#container img').index($(this));//取到小图片的index值
+               iNow = index;
+            $('#bigImg').show().css('background-image','url(img/'+(index+1)+'.jpg)  ');
+            e.preventDefault();//取消默认样式
+        });
+
+        $('#bigImg').on('tap',function(e){
+            $(this).hide();
+            $container.show();
+            e.preventDefault();
+
+        }).on('swiperight',function(){
+            iNow--;
+            if(iNow == -1){
+                iNow = $('#container img').length - 1;
+
+            }
+            $('#bigImg').css('background-image','url(img/'+(iNow+1)+'.jpg)');
+
+//            console.log('background-image','url(img/'+(iNow-1)+').jpg');
+        }).on('swipeleft',function(){
+            iNow++;
+            if(iNow == $('#container img').length){
+                iNow = 0;
+            }
+            $('#bigImg').css('background-image','url(img/'+(iNow+1)+'.jpg)');
+        });
+
+    })
+</script>
+</body>
+</html>

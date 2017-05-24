@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+输入密钥：<input type="text" />
+输入明文：<input type="text" />
+输出密文：<input type="text" />
+<input type="button" class="btn" value="加密"/>
+<input type="button"  value="解密"/>
+
+<script>
+    var aBtn = document.getElementsByName('btn');
+     function createKey(keychars) {
+        //字母顺序数组
+        var allChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'];
+        //变量keychars获取字母在字母顺序表中位置，删除该字母
+        for (var i = 0; i < keychars.length; i++) {
+            var index = allChars.indexOf(keychars[i]);
+            if (index > -1) {
+                allChars.splice(index, 1);
+            }
+        }
+        //将keychar中的字母插入到字母表中
+        for (var i = keychars.length - 1; i >= 0; i--) {
+            allChars.unshift(keychars[i]);
+        }
+        //从第一列将keychars插入至密码表
+        for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < 5; j++) {
+                keychars[j][i] = allChars[i * 5 + j];
+            }
+        }
+    };
+    aBtn.onclick=function removeDuplicate(str){
+        var result = [],tempStr = "";
+        var arr = str.split('');//把字符串分割成数组
+        //arr.sort();//排序
+        for(var i = 0; i < arr.length; i++){
+            var repeatBack = true;//设计变量是为确保字符串前部分不存在相同字符，因为以下算法只能确保连在一起相同的字符
+            for(var j = 0;j<result.length ;j++){
+                if(arr[i] == result[j])
+                    repeatBack = false;
+            }
+            if(arr[i] !== tempStr && repeatBack){
+                result.push(arr[i]);
+                tempStr = arr[i];
+            }else{
+                continue;
+            }
+        }
+        return result.join("");//将数组转换为字符串
+    }
+</script>
+</body>
+</html>

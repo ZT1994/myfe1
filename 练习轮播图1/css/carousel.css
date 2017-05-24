@@ -1,0 +1,33 @@
+.banner{
+    height: 460px;
+    background: #31333e;
+}
+.banner span{
+    cursor: pointer;
+}
+.carousel img{
+    display: none;
+}
+
+.carousel img.selected{
+    display: block;
+}
+
+#left-btn{
+    width: 29px;
+    height: 50px;
+    position: absolute;
+    top:205px;
+    left: 0;
+    background: url(../img/sprite.png) -26px 0 no-repeat;
+
+}
+#right-btn{
+    width: 29px;
+    height: 50px;
+    position: absolute;
+    top:205px;
+    right: 0;
+    background: url(../img/sprite.png) -87px 0 no-repeat;
+
+}

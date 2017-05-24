@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--类 具有相同属性和方法的对象的集合-->
+
+<script>
+//    var fn = function(){
+//        console.log(this.name+' is eating...');
+//    };
+    function Cat(name,age){ //构造函数=类  属性放在类里面 方法用Prototype下用
+        this.name=name;
+        this.age=age;
+//        this.eat=fn;
+    }
+ Cat.prototype.eat = function(){
+     console.log(this.name+' is eating...');
+ };
+    var cat = new Cat('xixi',4);
+//    console.log(cat);
+    cat.eat();
+</script>
+</body>
+</html>

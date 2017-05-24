@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>可拖拽照片墙</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 660px;
+            margin: 0 auto;/*居中*/
+        }
+        #container img{
+            width: 200px;
+            height: 150px;
+            margin: 10px;
+            float: left;
+        }
+        #container img.collide{
+            border:1px dotted #f00;/*选中得有红边*/
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+        <img src="img/1.jpg" alt=""/>
+        <img src="img/2.jpg" alt=""/>
+        <img src="img/3.jpg" alt=""/>
+        <img src="img/4.jpg" alt=""/>
+        <img src="img/5.jpg" alt=""/>
+        <img src="img/6.jpg" alt=""/>
+        <img src="img/7.jpg" alt=""/>
+        <img src="img/8.jpg" alt=""/>
+        <img src="img/9.jpg" alt=""/>
+
+</div>
+<script src="../jslib.js"></script>
+<script>
+    var oContainer = document.getElementById('container');
+    var aImg = oContainer.getElementsByTagName('img');
+    var zIndex = 0;
+    var collide = [];//定义数组
+    var nearElem = null;//最开始选择最近距离的数组里没有元素
+
+    for(var i=0; i<aImg.length; i++){
+        aImg[i].style.left = aImg[i].offsetLeft + 'px';
+        aImg[i].style.top = aImg[i].offsetTop + 'px';
+    }
+
+    for(var i=0; i<aImg.length; i++){
+        aImg[i].style.position = 'absolute';//循环定位
+        aImg[i].style.margin = 0;//如果不加这句上边框是20px加完之后就变成10px
+        drag(aImg[i]);
+
+        aImg[i].pos = {
+            left: aImg[i].offsetLeft,
+            top: aImg[i].offsetTop//初始坐标
+        }
+    }
+
+    function drag(elem) {
+        elem.onmousedown = function (e) {
+            e = e || window.event;
+            var iDisX = e.clientX - elem.offsetLeft;
+            var iDisY = e.clientY - elem.offsetTop;
+
+            document.onmousemove = function (e) {
+                e = e || window.event;
+
+                var iLeft = e.clientX - iDisX;
+                var iTop = e.clientY - iDisY;
+
+                elem.style.left = iLeft + 'px';
+                elem.style.top = iTop + 'px';
+                elem.style.zIndex = zIndex++;
+
+                //碰撞检测
+                for (var i = 0; i < aImg.length; i++) {
+                    if (aImg[i] == elem) {
+                        continue;//跳出这个循环继续往下走
+                    }
+                   var isCol = checkCollide(elem, aImg[i]);
+                        if (isCol) {
+                           collide.push(aImg[i]);//往数组里添加元素从底部往里加
+                      }
+                   aImg[i].className = '';//使最近距离的图片显示有红框
+                    }
+//                   console.log(Collide);
+                if(collide.length > 0){
+                    nearElem = nearest(elem);//nearElem存的就是距离最近的那个图
+                    nearElem.className = 'collide';//就是让距离最近的图有红框
+                }else{
+                    nearElem = null;
+                }
+
+                    return false;
+
+                }
+
+
+               document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                    //elem nearElem交换
+                    //if(null)为false
+                    if(nearElem){
+                        //找到最近的坐标互换一下
+                        animate(elem,nearElem.pos);//{left:nearElem.pos.left, tp:nearElem.pos.top}
+                        animate(nearElem,elem.pos);
+
+                        var pos = nearElem.pos;//给nearElem.pos换完之后就变了所以最开始需要记录一下原来的值
+                        nearElem.pos = elem.pos;
+                        elem.pos = pos;
+
+                        nearElem.className = '';//换完后红边去掉
+                        nearElem = null;
+                    }else{
+                        animate(elem,elem.pos);
+                    }
+
+
+                }
+            }
+                document.onselecttart = function(){
+                    return false;//阻止图片双击选定
+                }
+
+        }
+////              1布局转换 float--定位
+//                2绑定拖拽
+//                3检测碰撞，把所有碰撞的元素存到collide中
+//                4找出距离最近的
+//                5交换位置
+        function checkCollide(elem, target) {
+            var elemL = elem.offsetLeft,
+                    elemR = elem.offsetLeft + elem.offsetWidth,
+                    elemT = elem.offsetTop,
+                    elemB = elem.offsetTop + elem.offsetHeight;
+
+            var targetL = target.offsetLeft,
+                    targetR = target.offsetLeft + target.offsetWidth,
+                    targetT = target.offsetTop,
+                    targetB = target.offsetTop + target.offsetHeight;
+
+            if(elemR < targetL || elemB < targetT || elemL > targetR || elemT > targetB) {//没碰撞
+                return false;
+            }else {//碰撞
+                return true;//elem代表拖拽的元素
+                //target代表碰撞元素目标
+            }
+
+
+    }
+
+    function nearest(elem){
+
+        for(var i=0; i<collide.length; i++){
+
+            var minDis = 99999;//用于找最小距离的
+            var index = -1;//索引为了找最小距离对应里面的元素
+            var x = collide[i].offsetLeft - elem.offsetLeft;
+            var y = collide[i].offsetTop - elem.offsetTop;
+            var dis = Math.sqrt(x*x+y*y);
+            if(dis<minDis){
+                minDis = dis;
+                index = i;
+            }
+        }
+        return collide[index];
+    }
+</script>
+</body>
+</html>

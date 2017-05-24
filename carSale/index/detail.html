@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/dialog.css"/>
+    <style>
+        #container{
+            width: 900px;
+            height: 600px;
+            /*border: 1px solid #000;*/
+            position: relative;
+            left: 50%;
+            margin-left: -450px;
+            top: 50px;
+
+        }
+        #small-box{
+            width: 400px;
+            height: 450px;
+            position: relative;
+            float: left;
+        }
+        #drag{
+            width: 100px;
+            height: 150px;
+            background: #ccc;
+            opacity: 0.5;/*透明度*/
+            filter: alpha(opacity = 50 ) ;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #big-box{
+            width: 400px;
+            height: 450px;
+            float: left;
+            overflow: hidden;
+            display: none;
+            position:relative;
+        }
+        #big-img{
+            position: absolute;
+        }
+
+        #title{
+            width: 400px;
+            height: 300px;
+            margin: 100px 20px 0 30px;
+            float: right;
+        }
+        #title h3{
+            display: block;
+        }
+        .price{
+            margin: 50px 0 50px 60px ;
+            color:orange;
+            font-size: 20px;
+        }
+        .btn{
+            width: 120px;
+            height: 50px;
+            margin-left:40px;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bolder;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <a class="logo" href="#logo">
+            <img src="images/logo.jpg" alt=""/>
+        </a>
+        <!--<div class="city">-->
+            <!--<select name="" id="s_city">-->
+                <!--<option value="">北京</option>-->
+                <!--<option value="">上海</option>-->
+                <!--<option value="">哈尔滨</option>-->
+            <!--</select>-->
+        <!--</div>-->
+
+        <div class="search">
+            <input  class="search-input"  type="text" placeholder="搜索您想要的车"/>
+            <button class="btn-search"  href="#">搜索</button>
+        </div>
+
+        <div class="user">
+            <a  id="login" href="#login">登录</a>
+            <a  id="register"  href="#register">注册</a>
+            <div class="dialog-box-content">
+                用户名：<input type="text"/>
+                密  码：<input type="text"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="header-select">
+        <div class="wrapper">
+            <ul id="select-btn1">
+                <li><a href="index.html" class="selected">首页</a></li>
+                <li><a href="../buy/buy.html">我要买车</a></li>
+                <li><a href="../sale/sale.html">我要卖车</a></li>
+            </ul>
+            <ul id="select-btn2">
+                <li><a href="">二手车服务咨询</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="container">
+        <div id="small-box">
+           <img src="../buy/images/list/333.jpg"  style="width:400px;height: 450px;"/>
+            <div id="drag"></div>
+        </div>
+
+        <div id="big-box">
+            <img id="big-img" src="../buy/images/list/333.jpg" style="width:800px;height: 600px;"/>
+
+    </div>
+       <div id="title">
+           <h2>大众POLO 2016款 1.4L 自动风尚型</h2>
+               <div class="price">
+                   现价：<i class="fc-org priType">9.54万</i>&nbsp;&nbsp;&nbsp;&nbsp;
+                   原价：<s>6.9万</s>
+               </div>
+           <button class="btn">一次性付款</button> &nbsp;  <button class="btn">分期付款</button>
+       </div>
+
+
+
+</div>
+<script>
+    var oSmallBox = document.getElementById('small-box'),
+            oDrag = document.getElementById('drag'),
+            oBigBox = document.getElementById('big-box'),
+            oBigImg = document.getElementById('big-img'),
+            oTitle = document.getElementById('title');
+
+    oSmallBox.onmouseover=function() {
+        oDrag.style.display = "block";
+        oBigBox.style.display = "block";
+        oTitle.style.display="none";
+    };
+    oSmallBox.onmousemove = function (e) {
+        e = e || window.event;
+        var t = oSmallBox.offsetTop;//box相对于视口的位置
+        var l = oSmallBox.offsetLeft;
+        var iLeft = e.clientX - t - oDrag.offsetWidth/2 - 225;
+        var iTop = e.clientY - l - oDrag.offsetHeight/2 - 50;
+
+
+        if(iLeft<0){
+            iLeft = 0;
+        }else if(iLeft > oSmallBox.offsetWidth-oDrag.offsetWidth){
+            iLeft = oSmallBox.offsetWidth-oDrag.offsetWidth;
+        }
+        if(iTop<0){
+            iTop = 0;
+        }else if(iTop>oSmallBox.offsetHeight-oDrag.offsetHeight){
+            iTop = oSmallBox.offsetHeight-oDrag.offsetHeight;
+        }
+        oDrag.style.left = iLeft + "px";
+        oDrag.style.top = iTop + "px";
+
+        //大图移动
+
+        var scaleX = iLeft/(oSmallBox.offsetWidth - oDrag.offsetWidth);
+        var bLeft = scaleX*(oBigImg.offsetWidth - oBigBox.offsetWidth);
+        oBigImg.style.left = -bLeft + "px";
+
+        var scaleY = iTop/(oSmallBox.offsetHeight - oDrag.offsetHeight);
+        var bTop = scaleY * (oBigImg.offsetHeight - oBigBox.offsetHeight);
+        oBigImg.style.top = -bTop + "px";
+
+
+    };
+
+    oSmallBox.onmouseout = function(){
+        oDrag.style.display = "none";
+        oBigBox.style.display = "none";
+        oTitle.style.display="block";
+    }
+
+</script>
+</body>
+</html>
